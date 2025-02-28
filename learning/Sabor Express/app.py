@@ -1,6 +1,6 @@
 import os
-restaurantes = [];
 
+restaurantes = [];
 
 def finalizar_app():
     os.system('cls');
@@ -19,51 +19,57 @@ def exibir_nome_do_programa():
 def exibir_opcoes():
     print('1. Cadastrar restaurante');
     print('2. Listar restaurantes');
-    print('3. Ativar restaurante');
-    print('4. Deletar restaurante');
-    print('5. sair');
+    print('3. Buscar restaurante');
+    print('4. Ativar restaurante');
+    print('5. Deletar restaurante');
+    print('6. sair');
+def voltar_ao_menu():
+    input('Pressione qualquer tecla para continuar... ');
+    main();
 def opcao_invalida():
     print('Opção inválida!');
-    input('Pressione qualquer tecla para continuar...');
-    main();
+    voltar_ao_menu();
+def exibir_subtitulo(texto):
+    os.system('cls');
+    print(texto);
+    print()
 
 def cadastrar_restaurante():
-    os.system('cls');
+    exibir_subtitulo('Cadastrar restaurante');
     try:
-        nome_restaurante = input('Forneça o nome do restaurante:\n');
+        nome_restaurante = input('Forneça o nome do restaurante: ');
         if nome_restaurante == '':
-            print('Nome invalido');
-            main();
+            print('Erro: Valor necessário');
+            voltar_ao_menu();
         else:
             # .append() adiciona um item ao final da lista
             restaurantes.append(nome_restaurante);
             print(f'Restaurante {nome_restaurante} cadastrado com sucesso!')
-            input('Pressione qualquer tecla para continuar...');
-            main();
+            voltar_ao_menu();
     except:
         print('Erro ao cadastrar restaurante');
-        input('Pressione qualquer tecla para continuar...');
-        main();
-
+        voltar_ao_menu();
 def listar_restuarntes():
-    os.system('cls');
-    print('Listando restaurantes...');
-    
+    exibir_subtitulo('Listando restaurantes...');
     for restaurante in restaurantes:
         # .index retorna o index do item
         print(f'{restaurantes.index(restaurante) + 1}. {restaurante}');
     
-    input('Pressione qualquer tecla para continuar...');
-    main();
-
+    voltar_ao_menu();
+def buscar_restaurante():
+    exibir_subtitulo('buscar restaurante');
+    try:
+        nome_busca = input('Insira o nome do restaurante: ');
+    except:
+        print('Erro ao buscar restaurante');
+        voltar_ao_menu();
 
 # def ativar_restaurante():
-
 # def deletar_restaurante():
 
 def opcoes():
     try:
-        opcao = int(input('Escolha uma opção:'))
+        opcao = int(input('Escolha uma opção: '))
         # # opcao = int(opcao)
         # if opcao == 1:
         #     print('opção: cadastrar restaurante');
@@ -80,18 +86,18 @@ def opcoes():
         # match parece com o switch case, mas em python não precisa de chaves
         match opcao:
             case 1:
-                print('opção: cadastrar restaurante');
                 cadastrar_restaurante();
             case 2:
-                print('opção: listar restaurantes');
                 listar_restuarntes();
             case 3:
+                buscar_restaurante();
+            case 4:
                 print('opção: ativar restaurante');
                 # ativar_restaurante();
-            case 4:
+            case 5:
                 print('opção: deletar restaurante');
                 # deletar_restaurante();
-            case 5:
+            case 6:
                 print('opção: sair');
                 finalizar_app();
             case _:
@@ -99,7 +105,6 @@ def opcoes():
     except:
         opcao_invalida();
         
-
 def main():
     os.system('cls');
     exibir_nome_do_programa();
