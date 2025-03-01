@@ -1,6 +1,8 @@
 import os
 
-restaurantes = [];
+restaurantes = [{'nome': 'Teste', 'categoria': 'carnes', 'ativo': False },
+                {'nome': 'Teste 2', 'categoria': 'carnes', 'ativo': True },
+                {'nome': 'Teste 3', 'categoria': 'carnes', 'ativo': False }];
 
 def finalizar_app():
     os.system('cls');
@@ -20,7 +22,7 @@ def exibir_opcoes():
     print('1. Cadastrar restaurante');
     print('2. Listar restaurantes');
     print('3. Buscar restaurante');
-    print('4. Ativar restaurante');
+    print('4. Alterar status do restaurante');
     print('5. Deletar restaurante');
     print('6. sair');
 def voltar_ao_menu():
@@ -31,19 +33,27 @@ def opcao_invalida():
     voltar_ao_menu();
 def exibir_subtitulo(texto):
     os.system('cls');
+    linha = '═' * len(texto);
+    print(linha);
     print(texto);
+    print(linha);
     print()
 
 def cadastrar_restaurante():
     exibir_subtitulo('Cadastrar restaurante');
     try:
         nome_restaurante = input('Forneça o nome do restaurante: ');
-        if nome_restaurante == '':
+        categoria_restaurante = input('Forneça a categoria do restaurante: ');
+        if nome_restaurante == '' or categoria_restaurante == '':
             print('Erro: Valor necessário');
             voltar_ao_menu();
         else:
             # .append() adiciona um item ao final da lista
-            restaurantes.append(nome_restaurante);
+            restaurantes.append({
+                'nome': nome_restaurante,
+                'categoria': categoria_restaurante,
+                'ativo': False
+            });
             print(f'Restaurante {nome_restaurante} cadastrado com sucesso!')
             voltar_ao_menu();
     except:
@@ -51,10 +61,13 @@ def cadastrar_restaurante():
         voltar_ao_menu();
 def listar_restuarntes():
     exibir_subtitulo('Listando restaurantes...');
+    
+    print(f'{'nome'.ljust(29)} | {'categoria'.ljust(31)} | {'status'.ljust(29)}');
     for restaurante in restaurantes:
         # .index retorna o index do item
-        print(f'{restaurantes.index(restaurante) + 1}. {restaurante}');
-    
+        status_restaurante = 'Ativo' if restaurante['ativo'] else 'Inativo';
+        # .ljust() alinha o texto a esquerda
+        print(f"{restaurantes.index(restaurante) + 1}. Nome: {restaurante['nome'].ljust(20)} | Categoria: {restaurante['categoria'].ljust(20)} | Status: {status_restaurante}")
     voltar_ao_menu();
 def buscar_restaurante():
     exibir_subtitulo('buscar restaurante');
@@ -63,9 +76,31 @@ def buscar_restaurante():
     except:
         print('Erro ao buscar restaurante');
         voltar_ao_menu();
-
-# def ativar_restaurante():
-# def deletar_restaurante():
+def estado_restaurante():
+    exibir_subtitulo('Alterar status do restaurante');
+    try:
+        nome_restaurante = input('Insira o nome do restaurante que deseja modificar o status: ');
+        restaurante_encontrado = False;
+        for restaurante in restaurantes:
+            if nome_restaurante == restaurante['nome']:
+                restaurante_encontrado = True;
+                restaurante['ativo'] = not restaurante['ativo'];
+                mensagem = f'O Restaurante {nome_restaurante} foi ativado' if restaurante['ativo'] else f'O Restaurante {nome_restaurante} foi desativado';
+                print(mensagem);
+            elif nome_restaurante == '':
+                print('Erro: Valor indispensável');
+            else:
+                print('Restaurante nao encontrado');
+                voltar_ao_menu();
+        voltar_ao_menu();
+    except:
+        print('Erro ao ativar restaurante');
+        voltar_ao_menu();
+def deletar_restaurante():
+    try:
+        print('deletar restaurante');
+    except:
+        print('Erro ao deletar restaurante');
 
 def opcoes():
     try:
@@ -92,13 +127,10 @@ def opcoes():
             case 3:
                 buscar_restaurante();
             case 4:
-                print('opção: ativar restaurante');
-                # ativar_restaurante();
+                estado_restaurante();
             case 5:
-                print('opção: deletar restaurante');
-                # deletar_restaurante();
+                deletar_restaurante();
             case 6:
-                print('opção: sair');
                 finalizar_app();
             case _:
                 opcao_invalida();
