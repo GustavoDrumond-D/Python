@@ -4,9 +4,11 @@ restaurantes = [{'nome': 'Teste', 'categoria': 'carnes', 'ativo': False },
                 {'nome': 'Teste 2', 'categoria': 'carnes', 'ativo': True },
                 {'nome': 'Teste 3', 'categoria': 'carnes', 'ativo': False }];
 
+'''Função responsavel por finalizar o app'''
 def finalizar_app():
     os.system('cls');
     print('Finalizando...\n');
+'''Função responsavel por exibir o nome do programa'''
 def exibir_nome_do_programa():
     print("""
 ╭━━━╮╱╱╭╮╱╱╱╱╱╱╱╭━━━╮
@@ -18,6 +20,7 @@ def exibir_nome_do_programa():
 ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱┃┃
 ╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╱╰╯
       """);
+'''Função responsavel por exibir as opcoes'''
 def exibir_opcoes():
     print('1. Cadastrar restaurante');
     print('2. Listar restaurantes');
@@ -25,12 +28,15 @@ def exibir_opcoes():
     print('4. Alterar status do restaurante');
     print('5. Deletar restaurante');
     print('6. sair');
+'''Função responsavel por voltar ao menu'''
 def voltar_ao_menu():
     input('Pressione qualquer tecla para continuar... ');
     main();
+'''Função responsavel por exibir a opcao invalida'''
 def opcao_invalida():
     print('Opção inválida!');
     voltar_ao_menu();
+'''Função responsavel por exibir o subtitulo'''
 def exibir_subtitulo(texto):
     os.system('cls');
     linha = '═' * len(texto);
@@ -39,7 +45,11 @@ def exibir_subtitulo(texto):
     print(linha);
     print()
 
-def cadastrar_restaurante():
+
+
+'''Esssa função por cadastrar um restaurante'''
+def cadastrar_restaurante():     
+
     exibir_subtitulo('Cadastrar restaurante');
     try:
         nome_restaurante = input('Forneça o nome do restaurante: ');
@@ -59,6 +69,7 @@ def cadastrar_restaurante():
     except:
         print('Erro ao cadastrar restaurante');
         voltar_ao_menu();
+'''Essa função por listar os restaurantes'''
 def listar_restuarntes():
     exibir_subtitulo('Listando restaurantes...');
     
@@ -69,6 +80,7 @@ def listar_restuarntes():
         # .ljust() alinha o texto a esquerda
         print(f"{restaurantes.index(restaurante) + 1}. Nome: {restaurante['nome'].ljust(20)} | Categoria: {restaurante['categoria'].ljust(20)} | Status: {status_restaurante}")
     voltar_ao_menu();
+'''Essa função por buscar um restaurante'''
 def buscar_restaurante():
     exibir_subtitulo('buscar restaurante');
     try:
@@ -76,6 +88,7 @@ def buscar_restaurante():
     except:
         print('Erro ao buscar restaurante');
         voltar_ao_menu();
+'''Essa função por alterar o status do restaurante'''
 def estado_restaurante():
     exibir_subtitulo('Alterar status do restaurante');
     try:
@@ -96,12 +109,14 @@ def estado_restaurante():
     except:
         print('Erro ao ativar restaurante');
         voltar_ao_menu();
+'''Essa função por deletar um restaurante'''
 def deletar_restaurante():
     try:
         print('deletar restaurante');
     except:
         print('Erro ao deletar restaurante');
 
+'''Função responasavel por ativar as opcoes do menu'''
 def opcoes():
     try:
         opcao = int(input('Escolha uma opção: '))
@@ -136,7 +151,8 @@ def opcoes():
                 opcao_invalida();
     except:
         opcao_invalida();
-        
+
+'''Função principal'''        
 def main():
     os.system('cls');
     exibir_nome_do_programa();
