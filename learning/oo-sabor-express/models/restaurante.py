@@ -32,13 +32,13 @@ class ModelRestaurante:
         this._ativo = not this._ativo
 
     def receber_avaliacao(this, cliente, nota):
-        avalicao = ModelAvaliacao(cliente, nota)
-        this._avaliacao.append(avalicao)
+        if 0 <= nota <= 5:
+            avalicao = ModelAvaliacao(cliente, nota)
+            this._avaliacao.append(avalicao)
 
     @property
     def media_avaliacao(this):
         if not this._avaliacao:
-            return 0
+            return "sem avaliacao"
+    
         
-        media = round(sum(avaliacao._nota for avaliacao in this._avaliacao) / len(this._avaliacao), 1)
-        return media

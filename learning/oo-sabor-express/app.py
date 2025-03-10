@@ -8,8 +8,8 @@ restaurante_carpa = ModelRestaurante('Carpa', 'peixes');
 # restaurante_mexicano.alternar_status();
 
 restaurante_carpa.receber_avaliacao('Fernando', 5);
-restaurante_carpa.receber_avaliacao('Lais', 7);
-restaurante_carpa.receber_avaliacao('Rebeca', 8);
+restaurante_carpa.receber_avaliacao('Lais', 4);
+restaurante_carpa.receber_avaliacao('Rebeca', 3);
 
 
 def main():
