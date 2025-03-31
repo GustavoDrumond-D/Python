@@ -1,10 +1,10 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/inicio')
 
 def saudacao():
-    return "<h1> Olá Mundo </h1>"
+    return render_template('lista.html')
 
 app.run()

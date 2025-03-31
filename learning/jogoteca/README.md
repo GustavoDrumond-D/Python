@@ -18,7 +18,7 @@ A **Jogoteca** é uma aplicação web desenvolvida em Flask para gerenciar uma l
 - VS Code (como editor opcional)
 
 ## 📂 Estrutura de Arquivos
-```
+```bash
 JOGOTECA/
 ├── venv/               # Ambiente virtual Python
 ├── jogoteca.py         # Código principal da aplicação
