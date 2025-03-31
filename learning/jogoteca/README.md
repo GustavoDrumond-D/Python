@@ -1,4 +1,3 @@
-```markdown
 # Jogoteca - Projeto em Flask
 
 ## 📌 Sobre o Projeto
@@ -46,26 +45,6 @@ JOGOTECA/
    http://127.0.0.1:5000/inicio
    ```
 
-## 📝 Próximos Passos
-- [ ] Adicionar sistema de login  
-- [ ] Criar templates com Jinja2  
-- [ ] Implementar banco de dados (SQLite + SQLAlchemy)  
-
 ## ⁉️ Dúvidas?
 Consulte a [documentação do Flask](https://flask.palletsprojects.com/) ou abra uma issue no projeto.
 ```
-
-### Observações sobre o README:
-1. **Correção no código**: Notei que no seu `jogoteca.py` há um typo na rota (`/intcio` em vez de `/inicio`) e caracteres incorretos (`01á`). Recomendo corrigir para:
-   ```python
-   @app.route('/inicio')
-   def saudacao():
-       return "<h1>Olá Mundo</h1>"
-   ```
-
-2. **Personalização**: Você pode adicionar:
-   - Badges (ex: ![Flask](https://img.shields.io/badge/Flask-2.0.2-green))
-   - Capturas de tela
-   - Link para o projeto online (quando disponível)
-
-Quer que eu adicione algo específico ou ajuste algum detalhe? 😊
