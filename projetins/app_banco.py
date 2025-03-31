@@ -3,6 +3,7 @@ import getpass;
 import random;
 import time;
 import sys;
+# import curses;
 
 class Banco:
     contas = []
@@ -10,7 +11,7 @@ class Banco:
         self._id = id;
         self._titular = titular;
         self._senha = senha;
-        self._saldo = 0;
+        self._saldo = 0.00;
 
     @classmethod
     def criar_conta(cls):
@@ -51,7 +52,19 @@ class Banco:
         print(f'Titular: {self._titular}');
         print(f'Saldo: {self._saldo}');
     def depositar(self):
-        pass;
+        print('opção: depositar');
+        print();
+        try:
+            valor_depositado = float(input('Insira o valor a ser depositado: '));
+            if not valor_depositado:
+                raise Exception('O valor nao pode ser vazio');
+            
+            self._saldo += valor_depositado;
+            print('Deposito realizado com sucesso!');
+            print(f'Saldo: {self._saldo}');
+        except Exception as e:
+            print('Erro ao depositar');
+            print(f'Erro: {e}');
     def sacar(self):
         pass;
     def transferir(self):
@@ -60,6 +73,8 @@ class Banco:
         pass;
     def excluir_conta(self):
         pass;
+    def sair_da_conta(self):
+        pass;
 
     @staticmethod
     def entrar_conta():
@@ -67,9 +82,14 @@ class Banco:
         print();
     
         try:
-            id_conta = int(input('Insira o ID da conta: '));
+            id_conta = input('Insira o ID da conta: ');
             if not id_conta:
                 raise Exception('O ID da conta nao pode ser vazio');
+            elif len(id_conta) < 1 and len(id_conta) > 4:
+                tamanho_id = len(id_conta);
+                raise Exception(f'ID da conta invalido: {'A conta deve ter mais {tamanho_id} digitos' if len(id_conta) < 4 else 'A conta deve ter menos {tamanho_id} digitos'}');
+            else: 
+                id_conta = int(id_conta);
 
             senha_conta = getpass.getpass('Insira a senha: ');
             if not senha_conta:
@@ -208,6 +228,7 @@ def opcoes():
             case 4:
                 finalizar_app();
                 print('\nObrigado por utilizar o Banco XPTO!');
+                exit();
             case _:
                 opcao_invalida();
                 voltar_ao_menu();
