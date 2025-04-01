@@ -30,4 +30,9 @@ def saudacao():
     
     return render_template('lista.html', titulo = 'Jogos', jogos = lista_jogos)
 
+@app.route('/adicionar')
+def adicionar():
+    return render_template('adicionarJogos.html', titulo = 'Adicionar Jogos')
+
+
 app.run(debug=True)
